@@ -1,0 +1,4 @@
+Design,Cd,Range_m,Max_Height_m,Flight_Time_s,Range_Improvement_%
+Baseline Wing,0.4,70.35,24.1,4.39,0.0
+Simple Wingtip,0.3,80.86,26.5,4.62,14.95
+Curved Wingtip,0.22,92.2,28.93,4.83,31.06
