@@ -50,6 +50,10 @@ The low-drag design achieved the greatest range and longest flight time.
 | Medium Drag Design | 0.40 | 70.35 | 24.10 | 4.39 |
 | High Drag Design | 0.80 | 47.58 | 18.15 | 3.79 |
 
+## Graph
+
+![Wingtip Design Comparison](wingtip_design_comparison.png)
+
 ## Conclusion
 
 The simulation shows that increasing the drag coefficient reduces range, maximum height, and flight time.
