@@ -72,7 +72,6 @@ def simulate_flight(Cd, Cl):
 
 results = []
 plt.figure()
-
 baseline_range = None
 
 for design in designs:
