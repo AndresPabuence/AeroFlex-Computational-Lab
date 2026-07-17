@@ -169,6 +169,8 @@ The programs generate CSV files and PNG graphs with the simulation results.
 
 The next step is to connect the simulation to a physical experiment.
 
+The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md).
+
 A stronger version of this project could include:
 
 - building three physical prototypes
