@@ -57,6 +57,8 @@ The model updates velocity and position step by step using numerical integration
 - wingtip_sensitivity_analysis.py: high-resolution sensitivity analysis testing 10,000 Cd and Cl combinations
 - wingtip_sensitivity_results.csv: results from the sensitivity analysis
 - wingtip_sensitivity_analysis.png: graph from the sensitivity analysis
+- EXPERIMENT_PLAN.md: plan for future physical validation using prototype tests
+- experimental_data_template.csv: template for recording physical prototype test results
 
 ## Wingtip Configurations
 
@@ -118,6 +120,31 @@ The best result found was:
 
 The sensitivity analysis showed that the best performance occurred in the upper-left region of the plot, where drag is low and lift is high. This supports the idea that improving the lift-to-drag relationship can increase flight range in the simplified model.
 
+## Experimental Validation Plan
+
+The next step is to connect the simulation to a physical experiment.
+
+The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md).
+
+The prototype design plan is documented in [PROTOTYPE_DESIGNS.md](PROTOTYPE_DESIGNS.md).
+
+The experimental data template is included in [experimental_data_template.csv](experimental_data_template.csv).
+
+The goal of the physical test will be to build and compare three simplified prototypes:
+
+- Baseline Wing
+- Simple Wingtip
+- Curved Wingtip
+
+The physical experiment would measure:
+
+- flight distance
+- flight time
+- stability
+- visible flight behavior
+
+The purpose is not to prove that the simulation is perfectly accurate. The goal is to check whether the same general trend appears in both the computational model and the physical test.
+
 ## What I Found
 
 The results showed a consistent pattern across the project.
@@ -168,8 +195,6 @@ The programs generate CSV files and PNG graphs with the simulation results.
 ## Next Steps
 
 The next step is to connect the simulation to a physical experiment.
-
-The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md).
 
 A stronger version of this project could include:
 
