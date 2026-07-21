@@ -1,25 +1,27 @@
 # AeroFlex Computational Lab
 
-AeroFlex Computational Lab is a computational aerospace project built in Python to study how drag and lift affect the flight performance of a simplified wingtip-inspired model.
+AeroFlex Computational Lab is a Python-based computational aerospace project focused on studying how drag and lift affect the flight performance of a simplified wingtip-inspired model.
 
-The project started with a basic projectile motion simulation, then added air resistance, then compared simplified wingtip configurations, and finally expanded into a sensitivity analysis testing 10,000 combinations of drag coefficient (Cd) and lift coefficient (Cl).
+The project began with a basic projectile motion simulation and gradually developed into a larger study with air resistance, simplified lift modeling, wingtip-inspired comparisons, and a high-resolution sensitivity analysis testing 10,000 combinations of drag coefficient (Cd) and lift coefficient (Cl).
 
-This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational study designed to explore trends, compare design assumptions, and build a foundation for future experimental validation.
+This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational study designed to explore trends, compare assumptions, and create a foundation for future physical validation.
 
 ## Research Question
 
 How do changes in drag coefficient and lift coefficient affect the range, height, and flight time of a simplified aerospace-inspired model?
 
-## Project Development
+## Project Overview
 
-The project was built in four stages:
+The project was developed in several stages:
 
 1. Basic projectile motion without air resistance.
-2. Projectile motion with drag.
-3. Wingtip-inspired comparison using drag coefficient only.
-4. Lift-and-drag model followed by a high-resolution sensitivity analysis.
+2. Projectile motion with quadratic drag.
+3. Comparison of simplified wingtip-inspired configurations using drag coefficient only.
+4. Extension of the model to include both drag and lift coefficients.
+5. High-resolution sensitivity analysis across 10,000 Cd and Cl combinations.
+6. Preparation for future experimental validation using physical prototypes.
 
-Each stage adds more realism and more analysis than the previous one.
+Each stage adds a new layer to the analysis. The goal is not to create a perfect aerodynamic model, but to build a clear computational workflow that can later be improved with real experimental data.
 
 ## Physics Model
 
@@ -37,44 +39,57 @@ Where:
 - A is frontal area
 - v is velocity magnitude
 
-In the lift-and-drag version, the model also includes a simplified lift coefficient, Cl. The Cl/Cd ratio is used as a basic indicator of aerodynamic efficiency.
+In the lift-and-drag version, the model also includes a simplified lift coefficient, Cl. The lift-to-drag ratio, Cl/Cd, is used as a basic indicator of aerodynamic efficiency.
 
-The model updates velocity and position step by step using numerical integration.
+The simulation updates velocity and position step by step using numerical integration.
 
 ## Files
+
+### Core simulation files
 
 - trajectory_simulator.py: basic projectile motion without air resistance
 - trajectory_with_drag.py: projectile motion with air resistance
 - design_comparison.py: comparison of generic low, medium, and high drag designs
+
+### Wingtip analysis files
+
+- wingtip_comparison.py: drag-only comparison of wingtip-inspired configurations
+- wingtip_lift_drag_model.py: comparison using both lift and drag coefficients
+- wingtip_sensitivity_analysis.py: high-resolution sensitivity analysis testing 10,000 Cd and Cl combinations
+
+### Result files
+
 - aerodynamic_results.csv: numerical results from the generic drag comparison
 - aerodynamic_design_comparison.png: graph from the generic drag comparison
-- wingtip_comparison.py: drag-only comparison of wingtip-inspired configurations
 - wingtip_results.csv: results from the drag-only wingtip comparison
 - wingtip_design_comparison.png: graph from the drag-only wingtip comparison
-- wingtip_lift_drag_model.py: comparison using both lift and drag coefficients
 - wingtip_lift_drag_results.csv: results from the lift-and-drag model
 - wingtip_lift_drag_comparison.png: graph from the lift-and-drag model
-- wingtip_sensitivity_analysis.py: high-resolution sensitivity analysis testing 10,000 Cd and Cl combinations
 - wingtip_sensitivity_results.csv: results from the sensitivity analysis
 - wingtip_sensitivity_analysis.png: graph from the sensitivity analysis
-- EXPERIMENT_PLAN.md: plan for future physical validation using prototype tests
-- experimental_data_template.csv: template for recording physical prototype test results
+
+### Experimental preparation files
+
+- EXPERIMENT_PLAN.md: plan for future physical validation
+- PROTOTYPE_DESIGNS.md: proposed prototype designs for physical testing
+- experimental_data_template.csv: template for recording physical test data
+- experimental_results_analysis.py: script prepared to analyze future experimental results
 
 ## Wingtip Configurations
 
-The simplified wingtip comparison uses three conceptual configurations.
+The project compares three simplified wingtip-inspired configurations.
 
 ### Baseline Wing
 
-The Baseline Wing is the reference design. It has the highest drag coefficient in the wingtip comparison.
+The Baseline Wing is the reference design. It has the highest drag coefficient among the fixed wingtip configurations.
 
 ### Simple Wingtip
 
-The Simple Wingtip represents a moderate improvement over the baseline design. It has lower drag and slightly higher lift.
+The Simple Wingtip represents a moderate improvement over the baseline design. It has lower drag and slightly higher lift in the simplified model.
 
 ### Curved Wingtip
 
-The Curved Wingtip represents the most efficient of the three fixed configurations. It has the lowest drag coefficient and the highest lift-to-drag ratio in the simplified model.
+The Curved Wingtip represents the most efficient of the three fixed configurations. It has the lowest drag coefficient and the highest lift-to-drag ratio in the simplified comparison.
 
 ## Results: Drag-Only Wingtip Model
 
@@ -88,7 +103,7 @@ The first wingtip comparison used only drag coefficient, Cd.
 
 ![Wingtip Design Comparison](wingtip_design_comparison.png)
 
-In this version, reducing drag increased the range, maximum height, and flight time of the model.
+In this model, reducing drag increased range, maximum height, and flight time.
 
 ## Results: Lift and Drag Model
 
@@ -102,13 +117,13 @@ The second model added lift coefficient, Cl, in addition to drag coefficient, Cd
 
 ![Wingtip Lift and Drag Comparison](wingtip_lift_drag_comparison.png)
 
-In this version, the Curved Wingtip also performed best because it combined lower drag with a higher lift-to-drag ratio.
+The Curved Wingtip also performed best in this version because it combined lower drag with a higher lift-to-drag ratio.
 
 ## Sensitivity Analysis
 
-After comparing only three fixed configurations, I expanded the project with a high-resolution sensitivity analysis.
+After comparing only three fixed configurations, the project was expanded with a high-resolution sensitivity analysis.
 
-Instead of testing only three designs, this version tested 10,000 combinations of drag coefficient and lift coefficient. The goal was to identify which combination produced the greatest flight range under the same initial conditions.
+This version tested 10,000 combinations of drag coefficient and lift coefficient. The goal was to identify which Cd and Cl combination produced the greatest range under the same initial conditions.
 
 The best result found was:
 
@@ -118,11 +133,11 @@ The best result found was:
 
 ![Wingtip Sensitivity Analysis](wingtip_sensitivity_analysis.png)
 
-The sensitivity analysis showed that the best performance occurred in the upper-left region of the plot, where drag is low and lift is high. This supports the idea that improving the lift-to-drag relationship can increase flight range in the simplified model.
+The sensitivity analysis showed that the best performance occurred in the upper-left region of the plot, where drag is low and lift is high. This matches the expected trend: lower drag and higher lift-to-drag efficiency improve range in the simplified model.
 
 ## Experimental Validation Plan
 
-The next step is to connect the simulation to a physical experiment.
+The computational results are not being treated as final proof. The next step is to compare the simulation trend with a physical test.
 
 The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md).
 
@@ -130,26 +145,40 @@ The prototype design plan is documented in [PROTOTYPE_DESIGNS.md](PROTOTYPE_DESI
 
 The experimental data template is included in [experimental_data_template.csv](experimental_data_template.csv).
 
-The goal of the physical test will be to build and compare three simplified prototypes:
+The planned physical test will compare:
 
 - Baseline Wing
 - Simple Wingtip
 - Curved Wingtip
 
-The physical experiment would measure:
+The experiment would measure:
 
 - flight distance
 - flight time
 - stability
 - visible flight behavior
 
-The purpose is not to prove that the simulation is perfectly accurate. The goal is to check whether the same general trend appears in both the computational model and the physical test.
+The goal is to check whether the physical prototypes follow the same general trend as the simulation, not to prove that the simplified model is perfectly accurate.
+
+## Experimental Results Analysis
+
+The file experimental_results_analysis.py is prepared for future experimental data.
+
+Once real test data is added to experimental_data_template.csv, the script will calculate:
+
+- average distance by prototype
+- average flight time by prototype
+- average stability rating by prototype
+- number of trials
+- a comparison graph of the physical results
+
+At the current stage, the script is included as preparation for future testing.
 
 ## What I Found
 
-The results showed a consistent pattern across the project.
+The results showed a consistent trend across the project.
 
-Lower drag improved flight performance. When lift was added, configurations with a better lift-to-drag ratio performed better. In the sensitivity analysis, the best design appeared where Cd was lowest and Cl was highest within the tested range.
+Lower drag improved flight performance. When lift was added, configurations with a better lift-to-drag ratio performed better. In the sensitivity analysis, the best performance appeared where Cd was lowest and Cl was highest within the tested range.
 
 This suggests that aerodynamic efficiency has a strong effect on range, height, and flight time in the simplified model.
 
@@ -190,18 +219,45 @@ Run the sensitivity analysis:
 
 py wingtip_sensitivity_analysis.py
 
-The programs generate CSV files and PNG graphs with the simulation results.
+Run the experimental results analysis after adding real test data:
+
+py experimental_results_analysis.py
+
+The simulation scripts generate CSV files and PNG graphs with the results.
+
+## Current Status
+
+The computational part of the project is complete for this stage.
+
+Completed:
+
+- projectile simulation
+- drag model
+- lift-and-drag model
+- wingtip-inspired comparison
+- 10,000-combination sensitivity analysis
+- experimental validation plan
+- prototype design plan
+- experimental data template
+- experimental analysis script
+
+Not completed yet:
+
+- physical prototype construction
+- real flight testing
+- experimental data collection
+- comparison between simulation and real results
 
 ## Next Steps
 
-The next step is to connect the simulation to a physical experiment.
+The next major step is physical validation.
 
-A stronger version of this project could include:
+A stronger future version of this project could include:
 
 - building three physical prototypes
 - testing a baseline wing, simple wingtip, and curved wingtip
 - measuring distance, flight time, and stability
-- comparing experimental results with the simulation
+- comparing experimental results with the simulation trend
 - refining Cd and Cl assumptions using real data
 
 This would turn the project from a computational model into a simulation-and-validation study.
