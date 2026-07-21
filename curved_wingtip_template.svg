@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42cm" height="29.7cm" viewBox="0 0 42 29.7">
+<rect x="0" y="0" width="42" height="29.7" fill="white"/>
+<text x="21.0" y="2" font-family="Arial" font-size="0.9" font-weight="bold" text-anchor="middle">AeroFlex Curved Wingtip Template</text>
+<text x="21.0" y="3" font-family="Arial" font-size="0.45" text-anchor="middle">Print at 100% scale. Verify the 5 cm scale box before cutting.</text>
+
+<text x="5" y="5.4" font-family="Arial" font-size="0.6" font-weight="bold" text-anchor="start" fill="black">Curved Wingtip</text>
+<text x="5" y="6.1" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">Straight center wing with smooth rounded tips.</text>
+<path d="M 8 7 L 32 7 C 35 7, 35 15, 32 15 L 8 15 C 5 15, 5 7, 8 7 Z" fill="none" stroke="black" stroke-width="0.12"/>
+<line x1="8" y1="7" x2="8" y2="15" stroke="black" stroke-width="0.08" stroke-dasharray="0.35,0.25"/>
+<line x1="32" y1="7" x2="32" y2="15" stroke="black" stroke-width="0.08" stroke-dasharray="0.35,0.25"/>
+<text x="20.0" y="6.5" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="middle" fill="black">30 cm wingspan</text>
+<text x="35.8" y="11.0" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">8 cm chord</text>
+<text x="5" y="18.2" font-family="Arial" font-size="0.48" font-weight="bold" text-anchor="start" fill="black">Base dimensions:</text>
+<text x="5" y="19.0" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">- Wingspan: 30 cm</text>
+<text x="5" y="19.7" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">- Wing chord: 8 cm</text>
+<text x="5" y="20.4" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">- Wingtip section: 3 cm per side</text>
+<text x="5" y="21.3" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">Instruction: cut along the outer curved line.</text>
+<text x="5" y="22.0" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">Dashed lines are construction guides only.</text>
+<text x="5" y="23.0" font-family="Arial" font-size="0.48" font-weight="bold" text-anchor="start" fill="black">Legend</text>
+<line x1="5" y1="24.0" x2="8" y2="24.0" stroke="black" stroke-width="0.12" />
+<text x="8.6" y="24.15" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">Cut line</text>
+<line x1="5" y1="25.2" x2="8" y2="25.2" stroke="black" stroke-width="0.08" stroke-dasharray="0.35,0.25"/>
+<text x="8.6" y="25.35" font-family="Arial" font-size="0.42" font-weight="normal" text-anchor="start" fill="black">Fold / guide line</text>
+<text x="27" y="23.0" font-family="Arial" font-size="0.48" font-weight="bold" text-anchor="start" fill="black">Scale Check</text>
+<rect x="27" y="23.6" width="5" height="5" fill="none" stroke="black" stroke-width="0.08"/>
+<text x="29.5" y="29.0" font-family="Arial" font-size="0.4" font-weight="normal" text-anchor="middle" fill="black">5 cm x 5 cm</text>
+</svg>

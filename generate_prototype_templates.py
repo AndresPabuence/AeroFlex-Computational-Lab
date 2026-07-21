@@ -1,103 +1,160 @@
-# Generates a simple SVG cutting template for the three AeroFlex prototypes.
-# Units are in centimeters. Print at 100% scale if using as a physical template.
+# AeroFlex Prototype Template Generator
+# Generates three clean SVG cutting templates.
+# Units are centimeters. Print each SVG at 100% scale.
 
-svg_width = 36
-svg_height = 36
+PAGE_W = 42
+PAGE_H = 29.7
 
-wing_span = 30
-wing_chord = 8
-wingtip_width = 3
+WING_SPAN = 30
+WING_CHORD = 8
+WINGTIP_SECTION = 3
 
-start_x = 3
-baseline_y = 3
-simple_y = 14
-curved_y = 25
-
-
-def rect(x, y, w, h, stroke="black", fill="none", dash=False):
-    dash_style = 'stroke-dasharray="0.3,0.2"' if dash else ""
-    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" stroke="{stroke}" fill="{fill}" stroke-width="0.05" {dash_style}/>'
+WING_X = 5
+WING_Y = 7
 
 
-def line(x1, y1, x2, y2, stroke="black", dash=False):
-    dash_style = 'stroke-dasharray="0.3,0.2"' if dash else ""
-    return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke}" stroke-width="0.04" {dash_style}/>'
+def svg_header(title):
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{PAGE_W}cm" height="{PAGE_H}cm" viewBox="0 0 {PAGE_W} {PAGE_H}">
+<rect x="0" y="0" width="{PAGE_W}" height="{PAGE_H}" fill="white"/>
+<text x="{PAGE_W / 2}" y="2" font-family="Arial" font-size="0.9" font-weight="bold" text-anchor="middle">{title}</text>
+<text x="{PAGE_W / 2}" y="3" font-family="Arial" font-size="0.45" text-anchor="middle">Print at 100% scale. Verify the 5 cm scale box before cutting.</text>
+'''
 
 
-def text(x, y, content, size=0.45):
-    return f'<text x="{x}" y="{y}" font-size="{size}" font-family="Arial">{content}</text>'
+def svg_footer():
+    return "</svg>"
 
 
-svg = []
+def text(x, y, content, size=0.45, weight="normal", anchor="start"):
+    return f'<text x="{x}" y="{y}" font-family="Arial" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="black">{content}</text>'
 
-svg.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}cm" height="{svg_height}cm" viewBox="0 0 {svg_width} {svg_height}">')
 
-svg.append(text(3, 1.5, "AeroFlex Prototype Cutting Templates", 0.7))
-svg.append(text(3, 2.2, "Use the same base dimensions for all prototypes. Main variable: wingtip shape.", 0.4))
+def line(x1, y1, x2, y2, width=0.08, dash=False):
+    dash_code = 'stroke-dasharray="0.35,0.25"' if dash else ""
+    return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="black" stroke-width="{width}" {dash_code}/>'
 
-# =========================
-# Baseline Wing
-# =========================
-svg.append(text(start_x, baseline_y - 0.5, "1. Baseline Wing - straight wing, no wingtip modification", 0.45))
-svg.append(rect(start_x, baseline_y, wing_span, wing_chord))
 
-svg.append(text(start_x, baseline_y + wing_chord + 0.6, "30 cm wingspan", 0.35))
-svg.append(text(start_x + wing_span + 0.3, baseline_y + 4, "8 cm chord", 0.35))
+def rect(x, y, w, h, width=0.10):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="none" stroke="black" stroke-width="{width}"/>'
 
-# =========================
-# Simple Wingtip
-# =========================
-svg.append(text(start_x, simple_y - 0.5, "2. Simple Wingtip - fold both tips upward 30 to 45 degrees", 0.45))
-svg.append(rect(start_x, simple_y, wing_span, wing_chord))
 
-# Fold lines
-svg.append(line(start_x + wingtip_width, simple_y, start_x + wingtip_width, simple_y + wing_chord, dash=True))
-svg.append(line(start_x + wing_span - wingtip_width, simple_y, start_x + wing_span - wingtip_width, simple_y + wing_chord, dash=True))
+def path(d, width=0.10):
+    return f'<path d="{d}" fill="none" stroke="black" stroke-width="{width}"/>'
 
-svg.append(text(start_x + 0.3, simple_y + wing_chord + 0.6, "Fold line: 3 cm from each wingtip", 0.35))
-svg.append(text(start_x + 11, simple_y + wing_chord + 0.6, "Bend upward: 30 to 45 degrees", 0.35))
 
-# =========================
-# Curved Wingtip
-# =========================
-svg.append(text(start_x, curved_y - 0.5, "3. Curved Wingtip - use smooth curved ends", 0.45))
+def add_measurements(svg):
+    # Main labels, kept away from the wing
+    svg.append(text(WING_X + WING_SPAN / 2, WING_Y - 0.5, "30 cm wingspan", size=0.42, anchor="middle"))
+    svg.append(text(WING_X + WING_SPAN + 0.8, WING_Y + WING_CHORD / 2, "8 cm chord", size=0.42))
 
-# Main center wing
-center_x = start_x + wingtip_width
-center_w = wing_span - 2 * wingtip_width
-svg.append(rect(center_x, curved_y, center_w, wing_chord))
+    svg.append(text(5, 18.2, "Base dimensions:", size=0.48, weight="bold"))
+    svg.append(text(5, 19.0, "- Wingspan: 30 cm", size=0.42))
+    svg.append(text(5, 19.7, "- Wing chord: 8 cm", size=0.42))
+    svg.append(text(5, 20.4, "- Wingtip section: 3 cm per side", size=0.42))
 
-# Curved left wingtip path
-left_path = (
-    f'M {center_x} {curved_y} '
-    f'C {start_x + 1.2} {curved_y + 0.5}, {start_x} {curved_y + 2.0}, {start_x} {curved_y + 4.0} '
-    f'C {start_x} {curved_y + 6.0}, {start_x + 1.2} {curved_y + 7.5}, {center_x} {curved_y + wing_chord}'
-)
 
-# Curved right wingtip path
-right_start = start_x + wing_span - wingtip_width
-right_end = start_x + wing_span
-right_path = (
-    f'M {right_start} {curved_y} '
-    f'C {right_end - 1.2} {curved_y + 0.5}, {right_end} {curved_y + 2.0}, {right_end} {curved_y + 4.0} '
-    f'C {right_end} {curved_y + 6.0}, {right_end - 1.2} {curved_y + 7.5}, {right_start} {curved_y + wing_chord}'
-)
+def add_legend_and_scale(svg):
+    # Legend bottom-left
+    svg.append(text(5, 23.0, "Legend", size=0.48, weight="bold"))
+    svg.append(line(5, 24.0, 8, 24.0, width=0.12))
+    svg.append(text(8.6, 24.15, "Cut line", size=0.42))
 
-svg.append(f'<path d="{left_path}" stroke="black" fill="none" stroke-width="0.05"/>')
-svg.append(f'<path d="{right_path}" stroke="black" fill="none" stroke-width="0.05"/>')
+    svg.append(line(5, 25.2, 8, 25.2, width=0.08, dash=True))
+    svg.append(text(8.6, 25.35, "Fold / guide line", size=0.42))
 
-# Guide lines
-svg.append(line(center_x, curved_y, center_x, curved_y + wing_chord, dash=True))
-svg.append(line(right_start, curved_y, right_start, curved_y + wing_chord, dash=True))
+    # Scale box bottom-right
+    svg.append(text(27, 23.0, "Scale Check", size=0.48, weight="bold"))
+    svg.append(rect(27, 23.6, 5, 5, width=0.08))
+    svg.append(text(29.5, 29.0, "5 cm x 5 cm", size=0.40, anchor="middle"))
 
-svg.append(text(start_x, curved_y + wing_chord + 0.6, "Curved ends should be cut smoothly and kept symmetric.", 0.35))
 
-# Notes
-svg.append(text(3, 35, "Note: Verify printed scale with a ruler before cutting physical materials.", 0.4))
+def create_baseline():
+    svg = [svg_header("AeroFlex Baseline Wing Template")]
 
-svg.append("</svg>")
+    svg.append(text(5, 5.4, "Baseline Wing", size=0.60, weight="bold"))
+    svg.append(text(5, 6.1, "Straight wing with no wingtip modification.", size=0.42))
 
-with open("prototype_cutting_templates.svg", "w") as file:
-    file.write("\n".join(svg))
+    svg.append(rect(WING_X, WING_Y, WING_SPAN, WING_CHORD, width=0.12))
 
-print("Prototype cutting template generated: prototype_cutting_templates.svg")
+    add_measurements(svg)
+    svg.append(text(5, 21.3, "Instruction: cut the rectangle as one straight wing.", size=0.42))
+
+    add_legend_and_scale(svg)
+    svg.append(svg_footer())
+
+    with open("baseline_wing_template.svg", "w", encoding="utf-8") as file:
+        file.write("\n".join(svg))
+
+
+def create_simple_wingtip():
+    svg = [svg_header("AeroFlex Simple Wingtip Template")]
+
+    svg.append(text(5, 5.4, "Simple Wingtip", size=0.60, weight="bold"))
+    svg.append(text(5, 6.1, "Straight wing with both tips folded upward.", size=0.42))
+
+    svg.append(rect(WING_X, WING_Y, WING_SPAN, WING_CHORD, width=0.12))
+
+    left_fold = WING_X + WINGTIP_SECTION
+    right_fold = WING_X + WING_SPAN - WINGTIP_SECTION
+
+    svg.append(line(left_fold, WING_Y, left_fold, WING_Y + WING_CHORD, width=0.08, dash=True))
+    svg.append(line(right_fold, WING_Y, right_fold, WING_Y + WING_CHORD, width=0.08, dash=True))
+
+    add_measurements(svg)
+    svg.append(text(5, 21.3, "Instruction: fold both 3 cm tips upward along the dashed lines.", size=0.42))
+    svg.append(text(5, 22.0, "Recommended bend angle: 30 to 45 degrees.", size=0.42))
+
+    add_legend_and_scale(svg)
+    svg.append(svg_footer())
+
+    with open("simple_wingtip_template.svg", "w", encoding="utf-8") as file:
+        file.write("\n".join(svg))
+
+
+def create_curved_wingtip():
+    svg = [svg_header("AeroFlex Curved Wingtip Template")]
+
+    svg.append(text(5, 5.4, "Curved Wingtip", size=0.60, weight="bold"))
+    svg.append(text(5, 6.1, "Straight center wing with smooth rounded tips.", size=0.42))
+
+    center_left = WING_X + WINGTIP_SECTION
+    center_right = WING_X + WING_SPAN - WINGTIP_SECTION
+    right_edge = WING_X + WING_SPAN
+
+    top = WING_Y
+    bottom = WING_Y + WING_CHORD
+
+    outline = (
+        f"M {center_left} {top} "
+        f"L {center_right} {top} "
+        f"C {right_edge} {top}, {right_edge} {bottom}, {center_right} {bottom} "
+        f"L {center_left} {bottom} "
+        f"C {WING_X} {bottom}, {WING_X} {top}, {center_left} {top} "
+        f"Z"
+    )
+
+    svg.append(path(outline, width=0.12))
+
+    svg.append(line(center_left, top, center_left, bottom, width=0.08, dash=True))
+    svg.append(line(center_right, top, center_right, bottom, width=0.08, dash=True))
+
+    add_measurements(svg)
+    svg.append(text(5, 21.3, "Instruction: cut along the outer curved line.", size=0.42))
+    svg.append(text(5, 22.0, "Dashed lines are construction guides only.", size=0.42))
+
+    add_legend_and_scale(svg)
+    svg.append(svg_footer())
+
+    with open("curved_wingtip_template.svg", "w", encoding="utf-8") as file:
+        file.write("\n".join(svg))
+
+
+if __name__ == "__main__":
+    create_baseline()
+    create_simple_wingtip()
+    create_curved_wingtip()
+
+    print("Generated clean prototype templates:")
+    print("- baseline_wing_template.svg")
+    print("- simple_wingtip_template.svg")
+    print("- curved_wingtip_template.svg")
