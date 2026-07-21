@@ -4,7 +4,7 @@ AeroFlex Computational Lab is a Python-based computational aerospace project foc
 
 The project began with a basic projectile motion simulation and gradually developed into a larger study with air resistance, simplified lift modeling, wingtip-inspired comparisons, and a high-resolution sensitivity analysis testing 10,000 combinations of drag coefficient (Cd) and lift coefficient (Cl).
 
-This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational study designed to explore trends, compare assumptions, and create a foundation for future physical validation.
+This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational study designed to explore aerodynamic trends, compare assumptions, and create a foundation for future physical validation.
 
 ## Research Question
 
@@ -43,21 +43,29 @@ In the lift-and-drag version, the model also includes a simplified lift coeffici
 
 The simulation updates velocity and position step by step using numerical integration.
 
+## Model Assumptions
+
+This project uses a simplified model. The Cd and Cl values are conceptual and are used to compare trends, not to represent measured aerodynamic coefficients from a wind tunnel, CFD software, or a real aircraft wing.
+
+The model does not include real wing geometry, angle of attack, lift distribution, wingtip vortices, turbulence, pressure distribution, structural flexibility, or full 3D airflow.
+
+Because of these assumptions, the results should be interpreted as a computational exploration, not as a final engineering conclusion.
+
 ## Files
 
-### Core simulation files
+### Core Simulation Files
 
 - trajectory_simulator.py: basic projectile motion without air resistance
 - trajectory_with_drag.py: projectile motion with air resistance
 - design_comparison.py: comparison of generic low, medium, and high drag designs
 
-### Wingtip analysis files
+### Wingtip Analysis Files
 
 - wingtip_comparison.py: drag-only comparison of wingtip-inspired configurations
 - wingtip_lift_drag_model.py: comparison using both lift and drag coefficients
 - wingtip_sensitivity_analysis.py: high-resolution sensitivity analysis testing 10,000 Cd and Cl combinations
 
-### Result files
+### Result Files
 
 - aerodynamic_results.csv: numerical results from the generic drag comparison
 - aerodynamic_design_comparison.png: graph from the generic drag comparison
@@ -68,7 +76,7 @@ The simulation updates velocity and position step by step using numerical integr
 - wingtip_sensitivity_results.csv: results from the sensitivity analysis
 - wingtip_sensitivity_analysis.png: graph from the sensitivity analysis
 
-### Experimental preparation files
+### Experimental Preparation Files
 
 - EXPERIMENT_PLAN.md: plan for future physical validation
 - PROTOTYPE_DESIGNS.md: proposed prototype designs for physical testing
@@ -137,7 +145,7 @@ The sensitivity analysis showed that the best performance occurred in the upper-
 
 ## Experimental Validation Plan
 
-The computational results are not being treated as final proof. The next step is to compare the simulation trend with a physical test.
+The computational results are not treated as final proof. The next step is to compare the simulation trend with a physical test.
 
 The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md).
 
@@ -172,7 +180,7 @@ Once real test data is added to experimental_data_template.csv, the script will 
 - number of trials
 - a comparison graph of the physical results
 
-At the current stage, the script is included as preparation for future testing.
+At the current stage, this script is included as preparation for future testing.
 
 ## What I Found
 
@@ -189,6 +197,7 @@ This project is simplified and does not represent a complete aerodynamic simulat
 The model does not include:
 
 - real wing geometry
+- angle of attack
 - lift distribution
 - wingtip vortices
 - turbulence
