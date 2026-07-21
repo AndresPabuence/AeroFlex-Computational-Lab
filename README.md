@@ -2,9 +2,9 @@
 
 AeroFlex Computational Lab is a Python-based aerospace simulation project focused on studying how drag and lift affect the flight performance of a simplified wingtip-inspired model.
 
-The project began as a basic projectile motion simulation and gradually expanded into a larger computational study involving air resistance, simplified lift modeling, wingtip-inspired design comparisons, and a high-resolution sensitivity analysis with 10,000 simulated parameter combinations.
+The project began as a basic projectile motion simulation and gradually expanded into a computational study involving air resistance, simplified lift modeling, wingtip-inspired design comparisons, high-resolution sensitivity analysis, and preparation for future physical validation.
 
-This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational project designed to explore trends, compare assumptions, and prepare for future physical validation.
+This is not a full CFD simulation or a final aerodynamic model. It is a simplified 2D computational project designed to explore trends, compare assumptions, and prepare for future experimental testing.
 
 ## Research Question
 
@@ -19,7 +19,9 @@ The project was developed in stages:
 3. Drag-only comparison of wingtip-inspired configurations.
 4. Lift-and-drag comparison using simplified Cd and Cl values.
 5. Sensitivity analysis testing 10,000 Cd and Cl combinations.
-6. Preparation for future experimental validation using physical prototypes.
+6. Experimental validation planning.
+7. Prototype design planning.
+8. SVG cutting template generation for future physical prototypes.
 
 Each stage adds one level of complexity while keeping the model understandable and reproducible.
 
@@ -94,9 +96,12 @@ More details are documented in [MODEL_ASSUMPTIONS.md](MODEL_ASSUMPTIONS.md).
 
 - `EXPERIMENT_PLAN.md` — plan for future physical validation
 - `PROTOTYPE_DESIGNS.md` — proposed prototype designs for physical testing
+- `BUILD_PLAN.md` — first physical build plan for the prototypes
+- `MODEL_ASSUMPTIONS.md` — explanation of the main modeling assumptions
 - `experimental_data_template.csv` — template for recording physical test data
 - `experimental_results_analysis.py` — script prepared to analyze future experimental results
-- `MODEL_ASSUMPTIONS.md` — explanation of the main modeling assumptions
+- `generate_prototype_templates.py` — generates SVG cutting templates for the physical prototypes
+- `prototype_cutting_templates.svg` — cutting template for Baseline Wing, Simple Wingtip, and Curved Wingtip
 
 ## Wingtip Configurations
 
@@ -183,7 +188,33 @@ The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMEN
 
 The prototype design plan is documented in [PROTOTYPE_DESIGNS.md](PROTOTYPE_DESIGNS.md).
 
+The first physical build plan is documented in [BUILD_PLAN.md](BUILD_PLAN.md).
+
 The experimental data template is included in [experimental_data_template.csv](experimental_data_template.csv).
+
+## Prototype Cutting Templates
+
+The file `generate_prototype_templates.py` generates an SVG cutting template for the three planned physical prototypes.
+
+The generated file is:
+
+- `prototype_cutting_templates.svg`
+
+The template includes:
+
+- Baseline Wing
+- Simple Wingtip
+- Curved Wingtip
+
+The purpose of the template is to make the future physical build more consistent. Instead of improvising the prototype shapes by hand, the same base dimensions can be used for each design.
+
+The current planned dimensions are:
+
+- wingspan: 30 cm
+- wing chord: 8 cm
+- wingtip section: 3 cm per side
+
+These dimensions can be adjusted later, but the important point is that all three prototypes should remain as similar as possible except for the wingtip shape.
 
 ## Experimental Results Analysis
 
@@ -243,11 +274,15 @@ Run the sensitivity analysis:
 
 py wingtip_sensitivity_analysis.py
 
+Generate the prototype cutting templates:
+
+py generate_prototype_templates.py
+
 Run the experimental results analysis after adding real test data:
 
 py experimental_results_analysis.py
 
-The scripts generate CSV files and PNG graphs with the results.
+The scripts generate CSV files, PNG graphs, and an SVG prototype template.
 
 ## Current Status
 
@@ -261,8 +296,11 @@ Completed:
 - model assumptions documentation
 - experimental validation plan
 - prototype design plan
+- physical build plan
 - experimental data template
 - experimental analysis script
+- SVG cutting template generator
+- prototype cutting template
 
 Not completed yet:
 
@@ -289,6 +327,6 @@ This would turn the project from a computational model into a simulation-and-val
 
 AeroFlex Computational Lab shows how Python, physics, and data visualization can be used to explore aerospace design ideas.
 
-The project began with basic projectile motion and developed into a larger analysis of drag, lift, and aerodynamic efficiency. The sensitivity analysis tested 10,000 parameter combinations and showed that the best performance occurred with low drag and high lift.
+The project began with basic projectile motion and developed into a larger analysis of drag, lift, aerodynamic efficiency, and prototype preparation. The sensitivity analysis tested 10,000 parameter combinations and showed that the best performance occurred with low drag and high lift.
 
 Although the model is simplified, it provides a clear foundation for future experimental validation and more advanced aerospace analysis.
