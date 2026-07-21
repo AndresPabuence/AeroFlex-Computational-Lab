@@ -96,12 +96,13 @@ More details are documented in [MODEL_ASSUMPTIONS.md](MODEL_ASSUMPTIONS.md).
 
 - `EXPERIMENT_PLAN.md` — plan for future physical validation
 - `PROTOTYPE_DESIGNS.md` — proposed prototype designs for physical testing
-- `BUILD_PLAN.md` — first physical build plan for the prototypes
 - `MODEL_ASSUMPTIONS.md` — explanation of the main modeling assumptions
 - `experimental_data_template.csv` — template for recording physical test data
 - `experimental_results_analysis.py` — script prepared to analyze future experimental results
-- `generate_prototype_templates.py` — generates SVG cutting templates for the physical prototypes
-- `prototype_cutting_templates.svg` — cutting template for Baseline Wing, Simple Wingtip, and Curved Wingtip
+- `generate_prototype_templates.py` — generates separate SVG cutting templates for the physical prototypes
+- `baseline_wing_template.svg` — cutting template for the baseline wing
+- `simple_wingtip_template.svg` — cutting template for the simple wingtip design
+- `curved_wingtip_template.svg` — cutting template for the curved wingtip design
 
 ## Wingtip Configurations
 
@@ -188,25 +189,29 @@ The experimental validation plan is documented in [EXPERIMENT_PLAN.md](EXPERIMEN
 
 The prototype design plan is documented in [PROTOTYPE_DESIGNS.md](PROTOTYPE_DESIGNS.md).
 
-The first physical build plan is documented in [BUILD_PLAN.md](BUILD_PLAN.md).
-
 The experimental data template is included in [experimental_data_template.csv](experimental_data_template.csv).
 
 ## Prototype Cutting Templates
 
-The file `generate_prototype_templates.py` generates an SVG cutting template for the three planned physical prototypes.
+The file `generate_prototype_templates.py` generates separate SVG cutting templates for the three planned physical prototypes.
 
-The generated file is:
+The generated templates are:
 
-- `prototype_cutting_templates.svg`
+- `baseline_wing_template.svg`
+- `simple_wingtip_template.svg`
+- `curved_wingtip_template.svg`
 
-The template includes:
+Each template is separated to avoid overlapping labels, measurements, and construction notes.
 
-- Baseline Wing
-- Simple Wingtip
-- Curved Wingtip
+The templates include:
 
-The purpose of the template is to make the future physical build more consistent. Instead of improvising the prototype shapes by hand, the same base dimensions can be used for each design.
+- cut lines
+- fold or guide lines
+- base dimensions
+- a 5 cm scale check box
+- printing instructions
+
+The purpose of these templates is to make the future physical build more consistent. Instead of drawing each prototype by hand, the same base dimensions can be printed and verified before cutting.
 
 The current planned dimensions are:
 
@@ -214,7 +219,7 @@ The current planned dimensions are:
 - wing chord: 8 cm
 - wingtip section: 3 cm per side
 
-These dimensions can be adjusted later, but the important point is that all three prototypes should remain as similar as possible except for the wingtip shape.
+These dimensions can be adjusted later, but all three prototypes should remain as similar as possible except for the wingtip shape.
 
 ## Experimental Results Analysis
 
@@ -282,7 +287,7 @@ Run the experimental results analysis after adding real test data:
 
 py experimental_results_analysis.py
 
-The scripts generate CSV files, PNG graphs, and an SVG prototype template.
+The scripts generate CSV files, PNG graphs, and SVG prototype templates.
 
 ## Current Status
 
@@ -296,11 +301,10 @@ Completed:
 - model assumptions documentation
 - experimental validation plan
 - prototype design plan
-- physical build plan
 - experimental data template
 - experimental analysis script
 - SVG cutting template generator
-- prototype cutting template
+- separate prototype cutting templates
 
 Not completed yet:
 
